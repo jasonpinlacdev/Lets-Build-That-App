@@ -12,7 +12,10 @@
 		E1B8E76824BD226D00EFDADA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E76724BD226D00EFDADA /* ViewController.swift */; };
 		E1B8E76D24BD227000EFDADA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1B8E76C24BD227000EFDADA /* Assets.xcassets */; };
 		E1B8E77024BD227000EFDADA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1B8E76E24BD227000EFDADA /* LaunchScreen.storyboard */; };
-		E1B8E77C24BD22E700EFDADA /* ExpandableNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E77B24BD22E700EFDADA /* ExpandableNames.swift */; };
+		E1B8E77C24BD22E700EFDADA /* ExpandableContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E77B24BD22E700EFDADA /* ExpandableContacts.swift */; };
+		E1B8E77E24BD520800EFDADA /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E77D24BD520800EFDADA /* ContactCell.swift */; };
+		E1B8E78024BD552600EFDADA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E77F24BD552600EFDADA /* Constants.swift */; };
+		E1B8E78324BD5DCB00EFDADA /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E78224BD5DCB00EFDADA /* Contact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +26,10 @@
 		E1B8E76C24BD227000EFDADA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1B8E76F24BD227000EFDADA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1B8E77124BD227000EFDADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1B8E77B24BD22E700EFDADA /* ExpandableNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableNames.swift; sourceTree = "<group>"; };
+		E1B8E77B24BD22E700EFDADA /* ExpandableContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableContacts.swift; sourceTree = "<group>"; };
+		E1B8E77D24BD520800EFDADA /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		E1B8E77F24BD552600EFDADA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E1B8E78224BD5DCB00EFDADA /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		E1B8E76224BD226D00EFDADA /* Contacts App with Custom UITableView Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E1B8E78124BD552B00EFDADA /* Utility */,
 				E1B8E77A24BD22B800EFDADA /* Controllers */,
 				E1B8E77924BD22B000EFDADA /* Views */,
 				E1B8E77724BD229200EFDADA /* Models */,
@@ -68,7 +75,8 @@
 		E1B8E77724BD229200EFDADA /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E1B8E77B24BD22E700EFDADA /* ExpandableNames.swift */,
+				E1B8E77B24BD22E700EFDADA /* ExpandableContacts.swift */,
+				E1B8E78224BD5DCB00EFDADA /* Contact.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -87,6 +95,7 @@
 		E1B8E77924BD22B000EFDADA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E1B8E77D24BD520800EFDADA /* ContactCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -97,6 +106,14 @@
 				E1B8E76724BD226D00EFDADA /* ViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E1B8E78124BD552B00EFDADA /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				E1B8E77F24BD552600EFDADA /* Constants.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,10 +186,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1B8E77C24BD22E700EFDADA /* ExpandableNames.swift in Sources */,
+				E1B8E77E24BD520800EFDADA /* ContactCell.swift in Sources */,
+				E1B8E77C24BD22E700EFDADA /* ExpandableContacts.swift in Sources */,
 				E1B8E76824BD226D00EFDADA /* ViewController.swift in Sources */,
 				E1B8E76424BD226D00EFDADA /* AppDelegate.swift in Sources */,
 				E1B8E76624BD226D00EFDADA /* SceneDelegate.swift in Sources */,
+				E1B8E78024BD552600EFDADA /* Constants.swift in Sources */,
+				E1B8E78324BD5DCB00EFDADA /* Contact.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

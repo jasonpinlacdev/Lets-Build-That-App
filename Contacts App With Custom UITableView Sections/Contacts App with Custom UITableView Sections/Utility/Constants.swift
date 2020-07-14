@@ -1,5 +1,5 @@
 //
-//  ExpandableNames.swift
+//  Constants.swift
 //  Contacts App with Custom UITableView Sections
 //
 //  Created by Jason Pinlac on 7/13/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ExpandableNames {
-    var names: [String]
-    var isExpanded: Bool
+enum ButtonImage {
+    static let star = UIImage(systemName: "star")
+    static let starFill = UIImage(systemName: "star.fill")
 }
