@@ -9,6 +9,6 @@
 import UIKit
 
 struct ExpandableContacts {
-    var contacts: [Contact]
+    var contacts: [FavoritableContact]
     var isExpanded: Bool
 }

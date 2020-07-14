@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Contacts
 
 class ViewController: UITableViewController {
     
@@ -15,38 +16,49 @@ class ViewController: UITableViewController {
     
     
     
-    var allContacts: [ExpandableContacts] = [
-        ExpandableContacts(contacts: [
-            Contact(name: "Jason", isFavorited: false),
-            Contact(name: "Mike", isFavorited: false),
-            Contact(name: "Davy", isFavorited: false),
-            Contact(name: "Gus", isFavorited: false),
-            Contact(name: "TK", isFavorited: false),
-            Contact(name: "Dan", isFavorited: false),
-            Contact(name: "Harrison", isFavorited: false),
-            Contact(name: "Tyler", isFavorited: false)
-        ],isExpanded: true),
-        
-        ExpandableContacts(contacts: [
-            Contact(name: "Chico", isFavorited: false),
-            Contact(name: "Giubi", isFavorited: false),
-            Contact(name: "Daisy", isFavorited: false),
-        ], isExpanded: true),
-        
-        ExpandableContacts(contacts:  [
-            Contact(name: "Penny", isFavorited: false)
-        ], isExpanded: true),
-        
-        ExpandableContacts(contacts: [
-            Contact(name: "Anna", isFavorited: false),
-            Contact(name: "Jose", isFavorited: false),
-        ], isExpanded: true),
-    ]
+    var allContacts: [ExpandableContacts] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchContacts()
         configure()
+        
+    }
+    
+    
+    private func fetchContacts() {
+        print("Attempting to fetch contacts...")
+        let store = CNContactStore()
+        
+        store.requestAccess(for: .contacts) { (granted, error) in
+            if let error = error {
+                print(error)
+                print("Failed to request access.")
+                return
+            }
+            
+            if granted {
+                print("Access granted.")
+                let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey]
+                let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                do {
+                    var favoritableContacts = [FavoritableContact]()
+                    try store.enumerateContacts(with: request) { (contact, stopPointerIfYouWantToStopEnumerating) in
+                        let name = "\(contact.givenName) \(contact.familyName)"
+                        let phoneNumber = contact.phoneNumbers.first?.value.stringValue ?? "No Number"
+                        favoritableContacts.append(FavoritableContact(name: name, phoneNumber: phoneNumber, isFavorited: false))
+                    }
+                    self.allContacts = [ExpandableContacts(contacts: favoritableContacts, isExpanded: true)]
+                } catch {
+                    print("Failed to enumerate contacts.")
+                    print(error)
+                }
+                
+            } else {
+                print("Access denied..")
+            }
+        }
     }
     
     
@@ -144,11 +156,12 @@ extension ViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? ContactCell else { fatalError() }
+//        let cell = ContactCell(style: .subtitle, reuseIdentifier: cellId)
         cell.delegate = self
         let contact = allContacts[indexPath.section].contacts[indexPath.row]
         let text = showIndexPaths ? "\(contact.name), Section: \(indexPath.section), Row: \(indexPath.row)" : contact.name
         cell.textLabel?.text = text
-        
+        cell.detailTextLabel?.text = contact.phoneNumber
         cell.accessoryView?.tintColor = contact.isFavorited ? .systemRed : .systemGray
         
         return cell
@@ -165,7 +178,7 @@ extension ViewController: ContactCellDelegate {
         let contact = allContacts[indexPath.section].contacts[indexPath.row]
         cell.accessoryView?.tintColor = contact.isFavorited ? .systemRed : .systemGray
         allContacts[indexPath.section].contacts[indexPath.row].isFavorited.toggle()
-//        tableView.reloadRows(at: [indexPath], with: .fade)
+        //        tableView.reloadRows(at: [indexPath], with: .fade)
     }
     
     

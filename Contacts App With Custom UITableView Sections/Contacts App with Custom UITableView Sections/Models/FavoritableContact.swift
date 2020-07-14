@@ -9,7 +9,8 @@
 import Foundation
 
 
-struct Contact {
+struct FavoritableContact {
     var name: String
+    var phoneNumber: String
     var isFavorited: Bool
 }

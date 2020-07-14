@@ -15,7 +15,7 @@
 		E1B8E77C24BD22E700EFDADA /* ExpandableContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E77B24BD22E700EFDADA /* ExpandableContacts.swift */; };
 		E1B8E77E24BD520800EFDADA /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E77D24BD520800EFDADA /* ContactCell.swift */; };
 		E1B8E78024BD552600EFDADA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E77F24BD552600EFDADA /* Constants.swift */; };
-		E1B8E78324BD5DCB00EFDADA /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E78224BD5DCB00EFDADA /* Contact.swift */; };
+		E1B8E78324BD5DCB00EFDADA /* FavoritableContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B8E78224BD5DCB00EFDADA /* FavoritableContact.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		E1B8E77B24BD22E700EFDADA /* ExpandableContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableContacts.swift; sourceTree = "<group>"; };
 		E1B8E77D24BD520800EFDADA /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		E1B8E77F24BD552600EFDADA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E1B8E78224BD5DCB00EFDADA /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		E1B8E78224BD5DCB00EFDADA /* FavoritableContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritableContact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				E1B8E77B24BD22E700EFDADA /* ExpandableContacts.swift */,
-				E1B8E78224BD5DCB00EFDADA /* Contact.swift */,
+				E1B8E78224BD5DCB00EFDADA /* FavoritableContact.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,7 +192,7 @@
 				E1B8E76424BD226D00EFDADA /* AppDelegate.swift in Sources */,
 				E1B8E76624BD226D00EFDADA /* SceneDelegate.swift in Sources */,
 				E1B8E78024BD552600EFDADA /* Constants.swift in Sources */,
-				E1B8E78324BD5DCB00EFDADA /* Contact.swift in Sources */,
+				E1B8E78324BD5DCB00EFDADA /* FavoritableContact.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
