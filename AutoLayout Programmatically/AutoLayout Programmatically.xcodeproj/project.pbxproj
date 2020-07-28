@@ -15,6 +15,9 @@
 		E1C00C0124CF9A84009D636C /* UIColor+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C00C0024CF9A84009D636C /* UIColor+EXT.swift */; };
 		E1C00C0324CFA2FC009D636C /* SwipingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C00C0224CFA2FC009D636C /* SwipingController.swift */; };
 		E1C00C0B24CFB52B009D636C /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C00C0A24CFB52B009D636C /* PageCell.swift */; };
+		E1C00C1124D0B9CE009D636C /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C00C1024D0B9CE009D636C /* Page.swift */; };
+		E1C00C1324D0BA0E009D636C /* PagesBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C00C1224D0BA0E009D636C /* PagesBank.swift */; };
+		E1C00C1524D0D0C6009D636C /* UIView+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C00C1424D0D0C6009D636C /* UIView+EXT.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		E1C00C0024CF9A84009D636C /* UIColor+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+EXT.swift"; sourceTree = "<group>"; };
 		E1C00C0224CFA2FC009D636C /* SwipingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingController.swift; sourceTree = "<group>"; };
 		E1C00C0A24CFB52B009D636C /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		E1C00C1024D0B9CE009D636C /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		E1C00C1224D0BA0E009D636C /* PagesBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesBank.swift; sourceTree = "<group>"; };
+		E1C00C1424D0D0C6009D636C /* UIView+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+EXT.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +66,9 @@
 		E1B8E78F24BFA5C900EFDADA /* AutoLayout Programmatically */ = {
 			isa = PBXGroup;
 			children = (
+				E1C00C0524CFAFC3009D636C /* Utilities */,
 				E1C00C0724CFAFD3009D636C /* Custom Views */,
 				E1C00C0624CFAFC9009D636C /* Models */,
-				E1C00C0524CFAFC3009D636C /* Utilities */,
 				E1C00C0424CFAFBA009D636C /* Controllers */,
 				E1C00C0924CFB06A009D636C /* Support */,
 				E1B8E79E24BFA5CC00EFDADA /* Info.plist */,
@@ -84,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				E1C00C0024CF9A84009D636C /* UIColor+EXT.swift */,
+				E1C00C1424D0D0C6009D636C /* UIView+EXT.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -91,6 +98,8 @@
 		E1C00C0624CFAFC9009D636C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E1C00C1024D0B9CE009D636C /* Page.swift */,
+				E1C00C1224D0BA0E009D636C /* PagesBank.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,7 +197,10 @@
 				E1C00C0124CF9A84009D636C /* UIColor+EXT.swift in Sources */,
 				E1C00C0B24CFB52B009D636C /* PageCell.swift in Sources */,
 				E1B8E79124BFA5C900EFDADA /* AppDelegate.swift in Sources */,
+				E1C00C1524D0D0C6009D636C /* UIView+EXT.swift in Sources */,
+				E1C00C1124D0B9CE009D636C /* Page.swift in Sources */,
 				E1C00C0324CFA2FC009D636C /* SwipingController.swift in Sources */,
+				E1C00C1324D0BA0E009D636C /* PagesBank.swift in Sources */,
 				E1B8E79324BFA5C900EFDADA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

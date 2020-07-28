@@ -12,47 +12,51 @@ class PageCell: UICollectionViewCell {
     
     static let cellId = "PageCell"
     
-    let bearImageView: UIImageView = {
+    var page: Page? {
+        didSet {
+            if let page = page {
+                imageView.image = UIImage(named: page.imageName)
+                           let attributedText = NSMutableAttributedString(string: page.headerText, attributes: [
+                               .font: UIFont.boldSystemFont(ofSize: 18),
+                               .foregroundColor: UIColor.black,
+                           ])
+                           attributedText.append(NSMutableAttributedString(string: page.bodyText, attributes: [
+                               .font: UIFont.boldSystemFont(ofSize: 13),
+                               .foregroundColor: UIColor.gray,
+                           ]))
+                           descriptionTextView.attributedText = attributedText
+                           descriptionTextView.textAlignment = .center
+            }
+        }
+    }
+    
+    private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "bear_first")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    let descriptionTextView: UITextView = {
+    private let descriptionTextView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let attributedText = NSMutableAttributedString(string: "Join us today in our fun and games!", attributes: [
-            .font: UIFont.boldSystemFont(ofSize: 18),
-            .foregroundColor: UIColor.label,
-        ])
-        attributedText.append(NSMutableAttributedString(string: "\n\n\nAre you ready for loads and loads of fun? Don't wait any longer! We hope to see you in our store soon.", attributes: [
-            .font: UIFont.boldSystemFont(ofSize: 13),
-            .foregroundColor: UIColor.gray,
-        ]))
-        
         textView.backgroundColor = .none
-        textView.attributedText = attributedText
         textView.textAlignment = .center
         textView.isEditable = false
         textView.isScrollEnabled = false
         return textView
     }()
     
-    let previousButton: UIButton = {
+    private let previousButton: UIButton = {
         let button = UIButton(type: .system)
-        //        button.turnOnRedBorder()
         button.setTitle("PREV", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.gray, for: .normal)
         return button
     }()
     
-    let pageControl: UIPageControl = {
+    private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        //        pageControl.turnOnRedBorder()
         pageControl.currentPageIndicatorTintColor = .red
         pageControl.pageIndicatorTintColor = .lightGreyPink
         pageControl.currentPage = 1
@@ -60,9 +64,8 @@ class PageCell: UICollectionViewCell {
         return pageControl
     }()
     
-    let nextButton: UIButton = {
+    private let nextButton: UIButton = {
         let button = UIButton(type: .system)
-        //        button.turnOnRedBorder()
         button.setTitle("NEXT", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.mainPink, for: .normal)
@@ -73,8 +76,7 @@ class PageCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
-        setupBottomControls()
-        contentView.turnOnRedBorder()
+        setupBottomControlsLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -84,9 +86,8 @@ class PageCell: UICollectionViewCell {
     private func setupLayout() {
         let topImageContainerView = UIView()
         topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
-        
         self.contentView.addSubview(topImageContainerView)
-        topImageContainerView.addSubview(bearImageView)
+        topImageContainerView.addSubview(imageView)
         self.contentView.addSubview(descriptionTextView)
         
         NSLayoutConstraint.activate([
@@ -95,9 +96,9 @@ class PageCell: UICollectionViewCell {
             topImageContainerView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             topImageContainerView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             
-            bearImageView.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor),
-            bearImageView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor),
-            bearImageView.heightAnchor.constraint(equalTo: topImageContainerView.heightAnchor, multiplier: 0.5),
+            imageView.centerYAnchor.constraint(equalTo: topImageContainerView.centerYAnchor),
+            imageView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor),
+            imageView.heightAnchor.constraint(equalTo: topImageContainerView.heightAnchor, multiplier: 0.5),
             
             descriptionTextView.topAnchor.constraint(equalTo: topImageContainerView.bottomAnchor),
             descriptionTextView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 24),
@@ -107,16 +108,7 @@ class PageCell: UICollectionViewCell {
         ])
     }
     
-    private func setupBottomControls() {
-        let yellowView = UIView()
-        yellowView.backgroundColor = .systemYellow
-        
-        let greenView = UIView()
-        greenView.backgroundColor = .systemGreen
-        
-        let blueView = UIView()
-        blueView.backgroundColor = .systemBlue
-        
+    private func setupBottomControlsLayout() {
         let bottomControlsStackView = UIStackView(arrangedSubviews: [
             previousButton,
             pageControl,

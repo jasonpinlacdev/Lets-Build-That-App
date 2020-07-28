@@ -24,12 +24,14 @@ class SwipingController: UICollectionViewController {
 
 extension SwipingController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return PagesBank.pages.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCell.cellId, for: indexPath) as? PageCell else { fatalError() }
-        cell.backgroundColor = indexPath.row % 2 == 0 ? .systemPurple : .systemBackground
+//        cell.backgroundColor = .white
+        let page = PagesBank.pages[indexPath.row]
+        cell.page = page
         return cell
     }
     

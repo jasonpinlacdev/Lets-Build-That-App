@@ -8,14 +8,6 @@
 
 import UIKit
 
-
-extension UIView {
-    func turnOnRedBorder() {
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.systemRed.cgColor
-    }
-}
-
 class ViewController: UIViewController {
     
     // Avoid polluting viewDidLoad by using a closure to neatly initialize and setup properties.
@@ -33,7 +25,7 @@ class ViewController: UIViewController {
         
         let attributedText = NSMutableAttributedString(string: "Join us today in our fun and games!", attributes: [
             .font: UIFont.boldSystemFont(ofSize: 18),
-            .foregroundColor: UIColor.label,
+            .foregroundColor: UIColor.black,
         ])
         attributedText.append(NSMutableAttributedString(string: "\n\n\nAre you ready for loads and loads of fun? Don't wait any longer! We hope to see you in our store soon.", attributes: [
             .font: UIFont.boldSystemFont(ofSize: 13),
