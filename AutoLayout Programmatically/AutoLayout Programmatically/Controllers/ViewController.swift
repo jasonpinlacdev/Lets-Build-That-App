@@ -47,17 +47,75 @@ class ViewController: UIViewController {
         return textView
     }()
     
+    let previousButton: UIButton = {
+        let button = UIButton(type: .system)
+//        button.turnOnRedBorder()
+        button.setTitle("PREV", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.gray, for: .normal)
+        return button
+    }()
+    
+    let pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+//        pageControl.turnOnRedBorder()
+        pageControl.currentPageIndicatorTintColor = .red
+        pageControl.pageIndicatorTintColor = .lightGreyPink
+        pageControl.currentPage = 1
+        pageControl.numberOfPages = 4
+        return pageControl
+    }()
+    
+    let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+//        button.turnOnRedBorder()
+        button.setTitle("NEXT", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.mainPink, for: .normal)
+        return button
+    }()
+    
     // entry point for our app. its called when the view is loaded into memory
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        setupBottomControls()
+    }
+    
+    private func setupBottomControls() {
+        let yellowView = UIView()
+        yellowView.backgroundColor = .systemYellow
+        
+        let greenView = UIView()
+        greenView.backgroundColor = .systemGreen
+        
+        let blueView = UIView()
+        blueView.backgroundColor = .systemBlue
+        
+        let bottomControlsStackView = UIStackView(arrangedSubviews: [
+            previousButton,
+            pageControl,
+            nextButton
+        ])
+        
+        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomControlsStackView.axis = .horizontal
+        bottomControlsStackView.distribution = .fillEqually
+        view.addSubview(bottomControlsStackView)
+        
+        NSLayoutConstraint.activate([
+            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50),
+            bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+
     }
     
     
     private func setupLayout() {
         let topImageContainerView = UIView()
         topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
-//        topImageContainerView.backgroundColor = .systemBlue
         
         view.addSubview(topImageContainerView)
         topImageContainerView.addSubview(bearImageView)
