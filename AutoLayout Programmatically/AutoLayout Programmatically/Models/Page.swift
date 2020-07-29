@@ -10,7 +10,9 @@ import Foundation
 
 
 struct Page: Equatable {
+    
     let imageName: String
     let headerText: String
     let bodyText: String
+    
 }

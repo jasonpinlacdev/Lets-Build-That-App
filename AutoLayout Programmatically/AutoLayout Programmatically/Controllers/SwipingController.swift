@@ -10,7 +10,6 @@ import UIKit
 
 class SwipingController: UICollectionViewController {
     
-    
     private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.currentPageIndicatorTintColor = .red
@@ -78,18 +77,16 @@ class SwipingController: UICollectionViewController {
                 let indexPath = IndexPath(row: self.pageControl.currentPage, section: 0)
                 self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             }
-            
-            
         })
     }
     
-    
-    
+
     private func configureCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.isPagingEnabled = true
         collectionView.register(PageCell.self, forCellWithReuseIdentifier: PageCell.cellId)
     }
+    
     
     private func setupBottomControlsLayout() {
         let bottomControlsStackView = UIStackView(arrangedSubviews: [
@@ -112,6 +109,7 @@ class SwipingController: UICollectionViewController {
         
     }
     
+    
     private func adjustPrevNextButtonsColor() {
         if pageControl.currentPage == 0 {
             previousButton.setTitleColor(.gray, for: .normal)
@@ -130,13 +128,15 @@ class SwipingController: UICollectionViewController {
         }
     }
 
-    
 }
 
+
 extension SwipingController: UICollectionViewDelegateFlowLayout {
+   
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return PagesBank.pages.count
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PageCell.cellId, for: indexPath) as? PageCell else { fatalError() }
@@ -145,13 +145,16 @@ extension SwipingController: UICollectionViewDelegateFlowLayout {
         return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return view.frame.size
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
     
     // method to determine how far we have scrolled/dragged over on the UI to adjust collection view cell we are focusing on and keep the UI in sync.
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -162,4 +165,5 @@ extension SwipingController: UICollectionViewDelegateFlowLayout {
         collectionView.scrollToItem(at: IndexPath(row: page, section: 0), at: .centeredHorizontally, animated: true)
         adjustPrevNextButtonsColor()
     }
+    
 }
