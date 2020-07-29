@@ -40,6 +40,8 @@ class SwipingController: UICollectionViewController {
     
     
     @objc private func prevTapped(_ sender: UIButton) {
+        guard pageControl.currentPage > 0 else { return }
+        
         let newPage = max(pageControl.currentPage - 1, 0)
         pageControl.currentPage = newPage
         collectionView.scrollToItem(at: IndexPath(row: newPage, section: 0), at: .centeredHorizontally, animated: true)
@@ -48,13 +50,13 @@ class SwipingController: UICollectionViewController {
     
     
     @objc private func nextTapped(_ sender: UIButton) {
+        guard pageControl.currentPage <= PagesBank.pages.count - 2 else { return }
+        
         let newPage = min(pageControl.currentPage + 1, PagesBank.pages.count - 1)
         pageControl.currentPage = newPage
         collectionView.scrollToItem(at: IndexPath(row: newPage, section: 0), at: .centeredHorizontally, animated: true)
         adjustPrevNextButtonsColor()
     }
-    
-    
     
     
     override func viewDidLoad() {
@@ -65,8 +67,21 @@ class SwipingController: UICollectionViewController {
     }
     
     
-    
-    
+    // method for handling landscape support
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { _ in
+            self.collectionViewLayout.invalidateLayout()
+            
+            if self.pageControl.currentPage == 0 {
+                self.collectionView.contentOffset = .zero
+            } else {
+                let indexPath = IndexPath(row: self.pageControl.currentPage, section: 0)
+                self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            }
+            
+            
+        })
+    }
     
     
     
@@ -100,14 +115,18 @@ class SwipingController: UICollectionViewController {
     private func adjustPrevNextButtonsColor() {
         if pageControl.currentPage == 0 {
             previousButton.setTitleColor(.gray, for: .normal)
+            previousButton.isEnabled = false
         } else {
             previousButton.setTitleColor(.mainPink, for: .normal)
+            previousButton.isEnabled = true
         }
         
         if pageControl.currentPage == PagesBank.pages.count - 1 {
             nextButton.setTitleColor(.gray, for: .normal)
+            nextButton.isEnabled = false
         } else {
             nextButton.setTitleColor(.mainPink, for: .normal)
+            nextButton.isEnabled = true
         }
     }
 
