@@ -16,16 +16,17 @@ class PageCell: UICollectionViewCell {
         didSet {
             if let page = page {
                 imageView.image = UIImage(named: page.imageName)
-                           let attributedText = NSMutableAttributedString(string: page.headerText, attributes: [
-                               .font: UIFont.boldSystemFont(ofSize: 18),
-                               .foregroundColor: UIColor.black,
-                           ])
-                           attributedText.append(NSMutableAttributedString(string: page.bodyText, attributes: [
-                               .font: UIFont.boldSystemFont(ofSize: 13),
-                               .foregroundColor: UIColor.gray,
-                           ]))
-                           descriptionTextView.attributedText = attributedText
-                           descriptionTextView.textAlignment = .center
+                let attributedText = NSMutableAttributedString(string: page.headerText, attributes: [
+                    .font: UIFont.boldSystemFont(ofSize: 18),
+                    .foregroundColor: UIColor.black,
+                ])
+                attributedText.append(NSMutableAttributedString(string: page.bodyText, attributes: [
+                    .font: UIFont.boldSystemFont(ofSize: 13),
+                    .foregroundColor: UIColor.gray,
+                ]))
+                descriptionTextView.attributedText = attributedText
+                descriptionTextView.textAlignment = .center
+                
             }
         }
     }
@@ -47,36 +48,10 @@ class PageCell: UICollectionViewCell {
         return textView
     }()
     
-    private let previousButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("PREV", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.gray, for: .normal)
-        return button
-    }()
-    
-    private let pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.currentPageIndicatorTintColor = .red
-        pageControl.pageIndicatorTintColor = .lightGreyPink
-        pageControl.currentPage = 1
-        pageControl.numberOfPages = 4
-        return pageControl
-    }()
-    
-    private let nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("NEXT", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.mainPink, for: .normal)
-        return button
-    }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
-        setupBottomControlsLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -108,24 +83,4 @@ class PageCell: UICollectionViewCell {
         ])
     }
     
-    private func setupBottomControlsLayout() {
-        let bottomControlsStackView = UIStackView(arrangedSubviews: [
-            previousButton,
-            pageControl,
-            nextButton
-        ])
-        
-        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
-        bottomControlsStackView.axis = .horizontal
-        bottomControlsStackView.distribution = .fillEqually
-        self.contentView.addSubview(bottomControlsStackView)
-        
-        NSLayoutConstraint.activate([
-            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50),
-            bottomControlsStackView.leadingAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.leadingAnchor),
-            bottomControlsStackView.trailingAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.trailingAnchor),
-            bottomControlsStackView.bottomAnchor.constraint(equalTo: self.contentView.safeAreaLayoutGuide.bottomAnchor),
-        ])
-        
-    }
 }
